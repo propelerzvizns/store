@@ -1,6 +1,14 @@
 <template>
 <div>
+    <h1>add customer</h1>
+    <form @submit.prevent="addCustomer">
+        <input v-model="firstName">
+        <input v-model="lastName">
+        <input v-model="email">
+        <button>add customer    </button>
+    </form>
     <h1>customers</h1>
+
     <ul v-for="(customer, index) in customers" :key="index">
         <li><button @click="deleteCustomer(index)">delete customer</button></li>
         <li>{{customer.firstName}}</li>
@@ -20,7 +28,12 @@ export default {
     name: 'AppCustomers',
     
     data(){
+
+       
         return {
+                    firstName: '',
+        lastName: '',
+        email: '',
             customers: [
                 {
                     firstName: 'pera',
@@ -47,13 +60,21 @@ export default {
     methods: {
         deleteCustomer(index){
             this.customers.splice(index, 1);
+        },
+        
+        addCustomer(){
+            const newCustomer = {
+                firstName: this.firstName,
+                lastName: this.lastName,
+                email: this.email
+            }
+            this.customers.push(newCustomer)
         }
     }
 }
-// Postaviti niz customer-a u `data()` komponente `AppCustomers`
-// Implementirati listanje kupaca
-// Implementirati brisanje kupaca iz liste
+// Implementirati formu koja dodaje novog kupca u listu
 // Komitovati urađeno
+
 
 
 
