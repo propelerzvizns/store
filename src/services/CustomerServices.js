@@ -28,10 +28,9 @@ class CustomerServices {
     
     getCustomerById(id){
       return  customers.find((customer) => {
-          console.log({ id, customerId: customer.id })
           return customer.id == id
         });
-    //    console.log({user});
+ 
        
         }
 }
