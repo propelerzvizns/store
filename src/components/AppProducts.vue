@@ -1,17 +1,20 @@
 <template>
 <div>
     <h1>products</h1>
+    <input v-model="searchTerm" type="text">
 <table>
     <tr>
         <th>title</th>
         <th>quantity</th>
     </tr>
 
-    <tr v-for="product in productsList" :key="product.id">
+    <tr v-for="product in filterProducts" :key="product.id">
         <td>{{product.title}}</td>
         <td>{{product.quantity}}</td>
     </tr>
 </table>
+
+
 </div>
 </template>
 
@@ -21,6 +24,7 @@ export default {
     data(){
 
         return {
+            searchTerm: '',
 
             productsList: [
                 {
@@ -41,6 +45,13 @@ export default {
                     quantity: 1
                 }
                 ]
+        }
+    },
+    computed: {
+        filterProducts: function(){
+          return this.productsList.filter( (product) => {
+              return  product.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+            })
         }
     }
 }
