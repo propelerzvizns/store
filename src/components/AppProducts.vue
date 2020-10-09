@@ -10,7 +10,12 @@
 
     <tr v-for="product in filterProducts" :key="product.id">
         <td>{{product.title}}</td>
-        <td>{{product.quantity}}</td>
+        <td>
+            {{product.quantity}} 
+            <button @click="increment(product)">+</button>
+            <button @click="decrement(product)">-</button>
+            
+        </td>
     </tr>
 </table>
 
@@ -19,6 +24,7 @@
 </template>
 
 <script>
+ import { productsService } from '../services/ProductsService'
 export default {
 
     data(){
@@ -52,6 +58,14 @@ export default {
           return this.productsList.filter( (product) => {
               return  product.title.toLowerCase().includes(this.searchTerm.toLowerCase())
             })
+        }
+    },
+    methods: {
+        increment(product){
+           productsService.incrementItem(product)
+        },
+        decrement(product){
+            productsService.decrementItem(product)
         }
     }
 }
