@@ -2,24 +2,37 @@
 <div>
     <h1>add customer</h1>
     <form @submit.prevent="addCustomer">
-        <input v-model="firstName">
-        <input v-model="lastName">
-        <input v-model="email">
-        <button>add customer    </button>
+        <input v-model="newFirstName">
+        <input v-model="newLastName">
+        <input v-model="newEmail">
+        <button>add customer</button>
     </form>
     <h1>customers</h1>
+    <table>
+        <tr>
+            <th>first name</th>
+            <th>last name</th>
+            <th>email</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr v-for="customer in customers" :key="customer.id">
+            <td>{{customer.firstName}}</td>
+            <td>{{customer.lastName}}</td>
+            <td>{{customer.email}}</td>
+            
 
-    <ul v-for="(customer, index) in customers" :key="index">
-        <li><button @click="deleteCustomer(index)">delete customer</button></li>
-        <li>{{customer.firstName}}</li>
-        <li>{{customer.lastName}}</li>
-        <li>{{customer.email}}</li>
-        <li>
-            <ul  v-for="(product, index) in customer.productsList" :key="index">
-                <li>{{product}}</li>
-            </ul>
-        </li>
-    </ul>
+            <td>
+             
+             
+                <router-link :to="{ name: 'latest-purchases', params:{id: customer.id} }">Latest Purchases</router-link>
+                </td>
+            <td>
+                <button @click="deleteCustomer(index)">Delete Customer</button> 
+            </td>
+        </tr>
+    </table>
+
 </div>
 </template>
 
@@ -31,23 +44,28 @@ export default {
 
        
         return {
-                    firstName: '',
-        lastName: '',
-        email: '',
+            
+            newFirstName: '',
+            newLastName: '',
+            newEmail: '',
+
             customers: [
                 {
+                    id: 1,
                     firstName: 'pera',
                     lastName: 'peric',
                     email: 'pera@pera.com',
                     productsList: ['1item', '2item', '3item']
                 },
                 {
+                    id: 2,
                     firstName: 'comi',
                     lastName: 'comic',
                     email: 'comi@comi.com',
                     productsList: []
                 },
-                                {
+                {
+                    id: 3,
                     firstName: 'somi',
                     lastName: 'somic',
                     email: 'somi@somi.com',
@@ -58,23 +76,21 @@ export default {
     },
 
     methods: {
-        deleteCustomer(index){
-            this.customers.splice(index, 1);
+        deleteCustomer(id){
+            this.customers.splice(id, 1);
         },
         
         addCustomer(){
             const newCustomer = {
-                firstName: this.firstName,
-                lastName: this.lastName,
-                email: this.email
+                id: new Date().getTime(),
+                firstName: this.newFirstName,
+                lastName: this.newLastName,
+                email: this.newEmail
             }
             this.customers.push(newCustomer)
         }
     }
 }
-// Implementirati formu koja dodaje novog kupca u listu
-// Komitovati urađeno
-
 
 
 
