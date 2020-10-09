@@ -6,6 +6,7 @@
     <tr>
         <th>title</th>
         <th>quantity</th>
+        <th></th>
     </tr>
 
     <tr v-for="product in filterProducts" :key="product.id">
@@ -15,6 +16,9 @@
             <button @click="increment(product)">+</button>
             <button @click="decrement(product)">-</button>
             
+        </td>
+        <td>
+            <router-link :to="{ name: 'app-buy', params: { id: product.id}}">buy</router-link>
         </td>
     </tr>
 </table>

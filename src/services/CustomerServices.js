@@ -24,7 +24,9 @@ const customers = [
 
 class CustomerServices {
     
-    
+    constructor() {
+        console.log('servis se instancira')
+    }
     
     getCustomerById(id){
       return  customers.find((customer) => {

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import AppCustomers from '../components/AppCustomers.vue'
 import AppProducts from '../components/AppProducts.vue'
 import LatestPurchases from '../components/LatestPurchases.vue'
+import Buy from '../components/Buy.vue'
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,11 @@ const routes = [
     path: '/customers/:id',
     name: 'latest-purchases',
     component: LatestPurchases
+  },
+  {
+    path: '/products/:id',
+    name: 'app-buy',
+    component: Buy
   }
 ]
 

@@ -50,17 +50,7 @@ export default {
              return customerService.getCustomerById(this.$route.params.id);
          }
      },
-     created(){
-       console.log(this.$route.params.id);
-       
-          
-            
-            
-       
-     },
-    methods: {
 
-    }
 }
 
 // Dodati “Latest Purchases” link pored svakog kupca koje otvara posebnu stranicu
